@@ -73,15 +73,22 @@
 
     /* ===== LAYOUT ===== */
     .section {
-      padding: 28px 16px 40px;
-      max-width: 520px;
+      padding: 20px 12px 32px;
+      max-width: 100%;
       margin: 0 auto;
+      width: 100%;
+    }
+    @media (min-width: 480px) {
+      .section {
+        max-width: 520px;
+        padding: 28px 16px 40px;
+      }
     }
 
     /* ===== HERO ===== */
     .hero {
       text-align: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     .hero-badge {
       display: inline-flex;
@@ -90,18 +97,18 @@
       background: var(--brand);
       color: #fff;
       font-family: 'Sora', sans-serif;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 5px 14px;
+      padding: 5px 12px;
       border-radius: 20px;
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
     .hero-badge::before { content: "⚡"; }
     .hero h1 {
       font-family: 'Sora', sans-serif;
-      font-size: clamp(20px, 5vw, 28px);
+      font-size: clamp(18px, 5vw, 26px);
       font-weight: 800;
       color: #0d0d1a;
       margin-bottom: 8px;
@@ -109,40 +116,171 @@
       letter-spacing: -0.5px;
     }
     .hero p {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--gray-500);
     }
 
     /* ===== PARAMS BAR ===== */
     .params-bar {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
     }
     .param-chip {
       background: var(--white);
       border: 1px solid var(--gray-200);
-      border-radius: 20px;
-      padding: 5px 13px;
-      font-size: 12px;
+      border-radius: 16px;
+      padding: 4px 10px;
+      font-size: 11px;
       color: var(--gray-500);
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 4px;
       box-shadow: var(--shadow-sm);
     }
     .param-chip strong { color: #000; font-weight: 600; }
 
-    /* ===== CARDS CAROUSEL ===== */
+    /* ===== SAVINGS BANNER ===== */
+    .savings-banner {
+      background: linear-gradient(135deg, var(--brand) 0%, #6b3de8 100%);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      color: white;
+      text-align: center;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-md);
+    }
+    .savings-banner .s-label {
+      font-size: 10px;
+      opacity: 0.8;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      margin-bottom: 4px;
+    }
+    .savings-banner .s-amount {
+      font-family: 'Sora', sans-serif;
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -1px;
+    }
+    .savings-banner .s-sub {
+      font-size: 11px;
+      opacity: 0.75;
+      margin-top: 4px;
+    }
+
+    /* ===== PROVIDER SELECTOR TABS ===== */
+    .provider-selector {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 16px;
+      padding: 0 4px;
+    }
+    .provider-tab {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 12px 14px;
+      background: var(--white);
+      border: 2px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      cursor: pointer;
+      transition: all 0.25s ease;
+      box-shadow: var(--shadow-sm);
+    }
+    .provider-tab:hover {
+      border-color: var(--brand-light);
+      box-shadow: var(--shadow-md);
+    }
+    .provider-tab.active {
+      border-color: var(--brand);
+      background: linear-gradient(135deg, var(--brand-light) 0%, #f5f2ff 100%);
+      box-shadow: 0 4px 16px rgba(69,29,199,0.2);
+    }
+    .provider-tab-logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .provider-tab-logo.wave { background: var(--brand-light); }
+    .provider-tab-logo.volt { background: #E8F4FF; }
+    .provider-tab-logo img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+    }
+    .provider-tab-logo svg {
+      width: 28px;
+      height: 28px;
+    }
+    .provider-tab-info {
+      flex: 1;
+      min-width: 0;
+    }
+    .provider-tab-name {
+      font-family: 'Sora', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: #0d0d1a;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .provider-tab-sub {
+      font-size: 10px;
+      color: var(--gray-500);
+      margin-top: 2px;
+    }
+    .provider-tab-price {
+      text-align: right;
+      flex-shrink: 0;
+    }
+    .provider-tab-price-main {
+      font-family: 'Sora', sans-serif;
+      font-size: 14px;
+      font-weight: 800;
+      color: #0d0d1a;
+      line-height: 1.1;
+    }
+    .provider-tab-price-sub {
+      font-size: 9px;
+      color: var(--gray-400);
+    }
+    .provider-tab.active .provider-tab-name {
+      color: var(--brand);
+    }
+    .provider-tab.recommended {
+      position: relative;
+    }
+    .provider-tab.recommended::after {
+      content: "★";
+      position: absolute;
+      top: -6px;
+      right: 10px;
+      background: var(--accent);
+      color: var(--accent-dark);
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 6px;
+      border-radius: 8px;
+    }
+
+    /* ===== CAROUSEL WRAPPER ===== */
     .carousel-wrapper {
       position: relative;
-      margin-bottom: 28px;
+      margin-bottom: 24px;
     }
     .carousel-container {
       display: flex;
-      gap: 16px;
+      gap: 12px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
@@ -155,16 +293,16 @@
     }
     .carousel-track {
       display: flex;
-      gap: 16px;
+      gap: 12px;
     }
     .carousel-slide {
-      flex: 0 0 calc(100% - 16px);
+      flex: 0 0 calc(100% - 12px);
       scroll-snap-align: center;
-      max-width: 520px;
+      max-width: 100%;
     }
     @media (min-width: 768px) {
       .carousel-slide {
-        flex: 0 0 calc(50% - 8px);
+        flex: 0 0 calc(50% - 6px);
       }
     }
     
@@ -173,7 +311,7 @@
       display: flex;
       justify-content: center;
       gap: 8px;
-      margin-top: 14px;
+      margin-top: 12px;
     }
     .carousel-dot {
       width: 8px;
@@ -195,8 +333,8 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 36px;
-      height: 36px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       background: var(--white);
       border: 1px solid var(--gray-200);
@@ -205,7 +343,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 18px;
+      font-size: 16px;
       color: var(--brand);
       z-index: 10;
       transition: all 0.2s ease;
@@ -214,13 +352,19 @@
       background: var(--brand);
       color: var(--white);
     }
-    .carousel-nav.prev { left: -8px; }
-    .carousel-nav.next { right: -8px; }
+    .carousel-nav.prev { left: 0; }
+    .carousel-nav.next { right: 0; }
     .carousel-nav:disabled {
       opacity: 0.3;
       cursor: not-allowed;
     }
+    @media (max-width: 480px) {
+      .carousel-nav {
+        display: none;
+      }
+    }
 
+    /* ===== CARDS ===== */
     .cards {
       display: flex;
       flex-direction: column;
@@ -243,9 +387,14 @@
 
     /* --- Card Head --- */
     .card-head {
-      padding: 16px 18px 14px;
+      padding: 14px 16px 12px;
       border-bottom: 1px solid var(--gray-100);
       background: var(--white);
+    }
+    @media (min-width: 480px) {
+      .card-head {
+        padding: 16px 18px 14px;
+      }
     }
     .card-head-top {
       display: flex;
@@ -254,8 +403,8 @@
       margin-bottom: 10px;
     }
     .logo-box {
-      width: 46px;
-      height: 46px;
+      width: 42px;
+      height: 42px;
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -263,38 +412,66 @@
       flex-shrink: 0;
       overflow: hidden;
     }
+    @media (min-width: 480px) {
+      .logo-box {
+        width: 46px;
+        height: 46px;
+      }
+    }
     .logo-wave { background: var(--brand-light); }
     .logo-volt { background: #E8F4FF; }
-    .logo-box img { width: 38px; height: 38px; object-fit: contain; }
+    .logo-box img { width: 34px; height: 34px; object-fit: contain; }
+    @media (min-width: 480px) {
+      .logo-box img { width: 38px; height: 38px; }
+    }
 
     .badge-top {
       font-family: 'Sora', sans-serif;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
       letter-spacing: 0.05em;
-      padding: 4px 12px;
+      padding: 4px 10px;
       border-radius: 12px;
       flex-shrink: 0;
+    }
+    @media (min-width: 480px) {
+      .badge-top {
+        font-size: 10px;
+        padding: 4px 12px;
+      }
     }
     .badge-recommend { background: var(--accent); color: var(--accent-dark); }
     .badge-standard { background: var(--gray-100); color: var(--gray-500); border: 1px solid var(--gray-200); }
 
     .card-name {
       font-family: 'Sora', sans-serif;
-      font-size: 18px;
+      font-size: 16px;
       font-weight: 800;
       color: #0d0d1a;
     }
-    .card-sub { font-size: 12px; color: var(--gray-500); margin-top: 2px; }
+    @media (min-width: 480px) {
+      .card-name {
+        font-size: 18px;
+      }
+    }
+    .card-sub { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
+    @media (min-width: 480px) {
+      .card-sub { font-size: 12px; }
+    }
 
     /* --- Price Block --- */
     .price-block {
-      padding: 14px 18px;
+      padding: 12px 16px;
       background: var(--gray-50);
       border-bottom: 1px solid var(--gray-100);
     }
+    @media (min-width: 480px) {
+      .price-block {
+        padding: 14px 18px;
+      }
+    }
     .price-label {
-      font-size: 10px;
+      font-size: 9px;
       color: var(--gray-500);
       text-transform: uppercase;
       letter-spacing: 0.07em;
@@ -302,18 +479,23 @@
     }
     .price-main {
       font-family: 'Sora', sans-serif;
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 800;
       line-height: 1;
       color: #0d0d1a;
     }
+    @media (min-width: 480px) {
+      .price-main {
+        font-size: 28px;
+      }
+    }
     .price-main span {
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 400;
       color: var(--gray-500);
     }
     .price-higher { color: #2563eb; }
-    .price-sub { font-size: 11px; color: var(--gray-400); margin-top: 5px; }
+    .price-sub { font-size: 10px; color: var(--gray-400); margin-top: 5px; }
 
     /* --- Rows --- */
     .rows { padding: 4px 0; }
@@ -321,27 +503,45 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      padding: 10px 18px;
+      padding: 9px 16px;
       border-bottom: 1px solid var(--gray-100);
+    }
+    @media (min-width: 480px) {
+      .row {
+        padding: 10px 18px;
+      }
     }
     .row:last-child { border-bottom: none; }
 
     .row-icon {
-      width: 22px;
-      height: 22px;
+      width: 20px;
+      height: 20px;
       border-radius: 6px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      font-size: 12px;
+      font-size: 11px;
+    }
+    @media (min-width: 480px) {
+      .row-icon {
+        width: 22px;
+        height: 22px;
+        font-size: 12px;
+      }
     }
     .row-icon-green { background: var(--accent-light); }
     .row-icon-gray  { background: var(--gray-100); }
     .row-icon-bonus { background: #FFF3E0; }
 
-    .row-label { font-size: 13px; color: var(--gray-500); flex: 1; }
-    .row-value { font-size: 13px; font-weight: 600; color: #0d0d1a; text-align: right; }
+    .row-label { font-size: 12px; color: var(--gray-500); flex: 1; }
+    @media (min-width: 480px) {
+      .row-label { font-size: 13px; }
+    }
+    .row-value { font-size: 12px; font-weight: 600; color: #0d0d1a; text-align: right; }
+    @media (min-width: 480px) {
+      .row-value { font-size: 13px; }
+    }
     .row-value.better { color: var(--accent-dark); }
     .row-value.worse  { color: var(--gray-400); font-weight: 400; }
     .row-value.bonus-good { color: #c05200; font-weight: 700; }
@@ -351,18 +551,18 @@
       display: inline-block;
       background: var(--accent-light);
       color: var(--accent-dark);
-      font-size: 9px;
+      font-size: 8px;
       font-weight: 700;
-      padding: 1px 6px;
-      border-radius: 8px;
-      margin-left: 5px;
+      padding: 1px 5px;
+      border-radius: 6px;
+      margin-left: 4px;
       vertical-align: middle;
     }
 
     /* --- Section divider in card --- */
     .section-divider {
-      padding: 8px 18px 4px;
-      font-size: 10px;
+      padding: 8px 16px 4px;
+      font-size: 9px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -370,12 +570,23 @@
       border-top: 1px solid var(--gray-100);
       background: var(--gray-50);
     }
+    @media (min-width: 480px) {
+      .section-divider {
+        padding: 8px 18px 4px;
+        font-size: 10px;
+      }
+    }
 
-    /* --- Info Block (replaces CTA) --- */
+    /* --- Info Block --- */
     .info-block {
-      padding: 14px 18px;
+      padding: 12px 16px;
       background: linear-gradient(135deg, var(--brand-light) 0%, #f5f2ff 100%);
       border-top: 1px solid #d5caf5;
+    }
+    @media (min-width: 480px) {
+      .info-block {
+        padding: 14px 18px;
+      }
     }
     .info-block.volt-info {
       background: linear-gradient(135deg, #e8f4ff 0%, #f0f8ff 100%);
@@ -383,10 +594,15 @@
     }
     .info-title {
       font-family: 'Sora', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--brand);
       margin-bottom: 8px;
+    }
+    @media (min-width: 480px) {
+      .info-title {
+        font-size: 12px;
+      }
     }
     .info-title.volt { color: #1565c0; }
     .info-list {
@@ -396,11 +612,17 @@
       gap: 5px;
     }
     .info-list li {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--gray-700);
       display: flex;
       align-items: flex-start;
       gap: 6px;
+      line-height: 1.4;
+    }
+    @media (min-width: 480px) {
+      .info-list li {
+        font-size: 12px;
+      }
     }
     .info-list li::before {
       content: "✓";
@@ -414,14 +636,19 @@
     .why-section {
       background: var(--white);
       border-radius: var(--radius-lg);
-      padding: 20px 18px;
-      margin-bottom: 28px;
+      padding: 16px;
+      margin-bottom: 24px;
       box-shadow: var(--shadow-sm);
       border: 1.5px solid var(--brand-light);
     }
+    @media (min-width: 480px) {
+      .why-section {
+        padding: 20px 18px;
+      }
+    }
     .why-title {
       font-family: 'Sora', sans-serif;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 800;
       color: var(--brand);
       margin-bottom: 14px;
@@ -437,52 +664,28 @@
     .why-item {
       background: var(--gray-50);
       border-radius: var(--radius-sm);
-      padding: 12px;
+      padding: 10px;
       text-align: center;
       border: 1px solid var(--gray-200);
     }
-    .why-icon { font-size: 22px; margin-bottom: 5px; }
+    @media (min-width: 480px) {
+      .why-item {
+        padding: 12px;
+      }
+    }
+    .why-icon { font-size: 20px; margin-bottom: 5px; }
     .why-item-title {
       font-family: 'Sora', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: #0d0d1a;
       margin-bottom: 3px;
     }
-    .why-item-sub { font-size: 11px; color: var(--gray-500); line-height: 1.4; }
-
-    /* ===== SAVINGS BANNER ===== */
-    .savings-banner {
-      background: linear-gradient(135deg, var(--brand) 0%, #6b3de8 100%);
-      border-radius: var(--radius-md);
-      padding: 16px 18px;
-      color: white;
-      text-align: center;
-      margin-bottom: 24px;
-      box-shadow: var(--shadow-md);
-    }
-    .savings-banner .s-label {
-      font-size: 11px;
-      opacity: 0.8;
-      text-transform: uppercase;
-      letter-spacing: 0.07em;
-      margin-bottom: 4px;
-    }
-    .savings-banner .s-amount {
-      font-family: 'Sora', sans-serif;
-      font-size: 32px;
-      font-weight: 800;
-      letter-spacing: -1px;
-    }
-    .savings-banner .s-sub {
-      font-size: 12px;
-      opacity: 0.75;
-      margin-top: 4px;
-    }
+    .why-item-sub { font-size: 10px; color: var(--gray-500); line-height: 1.4; }
 
     /* ===== DISCLAIMER ===== */
     .disclaimer {
-      font-size: 10px;
+      font-size: 9px;
       color: var(--gray-400);
       text-align: center;
       line-height: 1.8;
@@ -499,13 +702,18 @@
 
     .sign-hero {
       background: linear-gradient(135deg, var(--brand) 0%, #6b3de8 100%);
-      padding: 28px 20px 32px;
+      padding: 24px 16px 28px;
       text-align: center;
       color: white;
     }
+    @media (min-width: 480px) {
+      .sign-hero {
+        padding: 28px 20px 32px;
+      }
+    }
     .sign-hero-logo {
-      width: 52px;
-      height: 52px;
+      width: 48px;
+      height: 48px;
       background: rgba(255,255,255,0.15);
       border-radius: 14px;
       display: flex;
@@ -514,13 +722,18 @@
       margin: 0 auto 14px;
       overflow: hidden;
     }
-    .sign-hero-logo img { width: 40px; height: 40px; object-fit: contain; }
+    .sign-hero-logo img { width: 36px; height: 36px; object-fit: contain; }
     .sign-hero h2 {
       font-family: 'Sora', sans-serif;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 800;
       margin-bottom: 6px;
       letter-spacing: -0.5px;
+    }
+    @media (min-width: 480px) {
+      .sign-hero h2 {
+        font-size: 22px;
+      }
     }
     .sign-hero p {
       font-size: 13px;
@@ -528,9 +741,15 @@
     }
 
     .sign-container {
-      max-width: 520px;
+      max-width: 100%;
       margin: 0 auto;
-      padding: 24px 16px 40px;
+      padding: 20px 12px 32px;
+    }
+    @media (min-width: 480px) {
+      .sign-container {
+        max-width: 520px;
+        padding: 24px 16px 40px;
+      }
     }
 
     .sign-card {
@@ -538,30 +757,42 @@
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow-md);
-      margin-bottom: 16px;
+      margin-bottom: 14px;
       border: 1.5px solid var(--gray-200);
     }
 
     .sign-card-head {
-      padding: 14px 18px;
+      padding: 12px 16px;
       background: var(--gray-50);
       border-bottom: 1px solid var(--gray-200);
       font-family: 'Sora', sans-serif;
-      font-size: 13px;
+      font-size: 12px;
       font-weight: 700;
       color: var(--brand);
       display: flex;
       align-items: center;
       gap: 8px;
     }
+    @media (min-width: 480px) {
+      .sign-card-head {
+        padding: 14px 18px;
+        font-size: 13px;
+      }
+    }
 
     .sign-detail-row {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 11px 18px;
+      padding: 10px 16px;
       border-bottom: 1px solid var(--gray-100);
-      font-size: 13px;
+      font-size: 12px;
+    }
+    @media (min-width: 480px) {
+      .sign-detail-row {
+        padding: 11px 18px;
+        font-size: 13px;
+      }
     }
     .sign-detail-row:last-child { border-bottom: none; }
     .sign-detail-label { color: var(--gray-500); }
@@ -569,10 +800,15 @@
 
     /* Signature pad */
     .sig-pad-wrap {
-      padding: 18px;
+      padding: 16px;
+    }
+    @media (min-width: 480px) {
+      .sig-pad-wrap {
+        padding: 18px;
+      }
     }
     .sig-instructions {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--gray-500);
       text-align: center;
       margin-bottom: 10px;
@@ -592,8 +828,13 @@
     #signatureCanvas {
       display: block;
       width: 100%;
-      height: 160px;
+      height: 140px;
       touch-action: none;
+    }
+    @media (min-width: 480px) {
+      #signatureCanvas {
+        height: 160px;
+      }
     }
     .sig-placeholder {
       position: absolute;
@@ -602,7 +843,7 @@
       align-items: center;
       justify-content: center;
       pointer-events: none;
-      font-size: 13px;
+      font-size: 12px;
       color: var(--gray-400);
       gap: 6px;
       flex-direction: column;
@@ -617,11 +858,11 @@
     }
     .btn-clear {
       flex: 0 0 auto;
-      padding: 10px 16px;
+      padding: 9px 14px;
       border: 1.5px solid var(--gray-200);
       border-radius: var(--radius-sm);
       background: var(--white);
-      font-size: 13px;
+      font-size: 12px;
       color: var(--gray-700);
       cursor: pointer;
       font-family: 'DM Sans', sans-serif;
@@ -631,7 +872,7 @@
 
     /* Consent checkbox */
     .consent-block {
-      padding: 16px 18px;
+      padding: 14px 16px;
       border-top: 1px solid var(--gray-100);
     }
     .consent-label {
@@ -649,7 +890,7 @@
       cursor: pointer;
     }
     .consent-text {
-      font-size: 12px;
+      font-size: 11px;
       color: var(--gray-700);
       line-height: 1.5;
     }
@@ -659,10 +900,10 @@
     .btn-submit {
       display: block;
       width: 100%;
-      padding: 16px;
+      padding: 14px;
       border-radius: var(--radius-md);
       font-family: 'Sora', sans-serif;
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 700;
       text-align: center;
       cursor: pointer;
@@ -672,6 +913,12 @@
       box-shadow: 0 4px 20px rgba(4,240,106,0.3);
       transition: opacity 0.2s, transform 0.1s;
       margin-top: 8px;
+    }
+    @media (min-width: 480px) {
+      .btn-submit {
+        padding: 16px;
+        font-size: 15px;
+      }
     }
     .btn-submit:disabled {
       opacity: 0.4;
@@ -684,29 +931,29 @@
     .success-screen {
       display: none;
       text-align: center;
-      padding: 48px 24px;
+      padding: 40px 20px;
     }
     .success-screen.visible { display: block; }
     .success-icon {
-      width: 72px;
-      height: 72px;
+      width: 64px;
+      height: 64px;
       background: var(--accent-light);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
       margin: 0 auto 20px;
-      font-size: 32px;
+      font-size: 28px;
     }
     .success-screen h3 {
       font-family: 'Sora', sans-serif;
-      font-size: 22px;
+      font-size: 20px;
       font-weight: 800;
       color: #0d0d1a;
       margin-bottom: 8px;
     }
     .success-screen p {
-      font-size: 14px;
+      font-size: 13px;
       color: var(--gray-500);
       line-height: 1.6;
     }
@@ -718,7 +965,7 @@
       justify-content: center;
       gap: 8px;
       padding: 12px;
-      font-size: 12px;
+      font-size: 11px;
       color: var(--gray-400);
     }
     .spinner {
@@ -761,7 +1008,7 @@
       display: inline-flex;
       align-items: center;
       gap: 6px;
-      font-size: 11px;
+      font-size: 10px;
       color: var(--gray-500);
       padding: 4px 10px;
       background: var(--white);
@@ -804,9 +1051,9 @@
 
     <!-- Params -->
     <div class="params-bar">
-      <div class="param-chip">⚡ Jahresverbrauch: <strong>2.500 kWh</strong></div>
-      <div class="param-chip">📅 Abschlag: <strong>monatlich</strong></div>
-      <div class="param-chip">📍 PLZ: <strong>60313 Frankfurt</strong></div>
+      <div class="param-chip">⚡ <strong>2.500 kWh</strong></div>
+      <div class="param-chip">📅 <strong>monatlich</strong></div>
+      <div class="param-chip">📍 <strong>60313</strong></div>
     </div>
 
     <!-- Savings banner -->
@@ -815,6 +1062,42 @@
       <div class="s-amount">+150 € Sofortbonus</div>
       <div class="s-sub">Exklusiv für Neukunden · Sofort auf dein Konto</div>
     </div>
+
+    <!-- ===== PROVIDER SELECTOR TABS ===== -->
+    <div class="provider-selector">
+      <div class="provider-tab recommended active" data-slide="0" onclick="switchSlide(0)">
+        <div class="provider-tab-logo wave">
+          <img src="data:image/png;base64,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" alt="Wave Energy" />
+        </div>
+        <div class="provider-tab-info">
+          <div class="provider-tab-name">Wave Energy</div>
+          <div class="provider-tab-sub">Ökostrom · Empfehlung</div>
+        </div>
+        <div class="provider-tab-price">
+          <div class="provider-tab-price-main">904€</div>
+          <div class="provider-tab-price-sub">/Jahr</div>
+        </div>
+      </div>
+
+      <div class="provider-tab" data-slide="1" onclick="switchSlide(1)">
+        <div class="provider-tab-logo volt">
+          <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VoltPower Logo">
+            <rect width="38" height="38" rx="10" fill="#E8F4FF"/>
+            <polygon points="21,5 12,21 18,21 17,33 26,17 20,17" fill="#1565c0" opacity="0.9"/>
+            <polygon points="21,5 12,21 18,21 17,33 26,17 20,17" fill="none" stroke="#2196f3" stroke-width="0.7"/>
+          </svg>
+        </div>
+        <div class="provider-tab-info">
+          <div class="provider-tab-name">VoltPower</div>
+          <div class="provider-tab-sub">Basic Tarif</div>
+        </div>
+        <div class="provider-tab-price">
+          <div class="provider-tab-price-main">880€</div>
+          <div class="provider-tab-price-sub">/Jahr</div>
+        </div>
+      </div>
+    </div>
+    <!-- ===== END PROVIDER SELECTOR ===== -->
 
     <!-- ===== CAROUSEL WRAPPER ===== -->
     <div class="carousel-wrapper">
@@ -905,7 +1188,6 @@
               <div class="card-head">
                 <div class="card-head-top">
                   <div class="logo-box logo-volt">
-                    <!-- VoltPower logo SVG -->
                     <svg viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VoltPower Logo">
                       <rect width="38" height="38" rx="10" fill="#E8F4FF"/>
                       <polygon points="21,5 12,21 18,21 17,33 26,17 20,17" fill="#1565c0" opacity="0.9"/>
@@ -983,8 +1265,8 @@
 
       <!-- Carousel Dots -->
       <div class="carousel-dots" id="carouselDots">
-        <button class="carousel-dot active" data-index="0" aria-label="Slide 1"></button>
-        <button class="carousel-dot" data-index="1" aria-label="Slide 2"></button>
+        <button class="carousel-dot active" data-index="0" aria-label="Wave Energy" onclick="switchSlide(0)"></button>
+        <button class="carousel-dot" data-index="1" aria-label="VoltPower" onclick="switchSlide(1)"></button>
       </div>
     </div>
     <!-- ===== END CAROUSEL ===== -->
@@ -1150,20 +1432,32 @@
   const carouselPrev = document.getElementById('carouselPrev');
   const carouselNext = document.getElementById('carouselNext');
   const carouselDots = document.querySelectorAll('.carousel-dot');
+  const providerTabs = document.querySelectorAll('.provider-tab');
   const totalSlides = 2;
   let currentSlide = 0;
 
+  function switchSlide(index) {
+    if (index < 0 || index >= totalSlides) return;
+    currentSlide = index;
+    updateCarousel();
+  }
+
   function updateCarousel() {
     const slideWidth = carouselContainer.querySelector('.carousel-slide').offsetWidth;
-    const gap = 16;
+    const gap = 12;
     carouselContainer.scrollTo({
       left: currentSlide * (slideWidth + gap),
       behavior: 'smooth'
     });
     
     // Update dots
-    carouselDots.forEach((dot, index) => {
-      dot.classList.toggle('active', index === currentSlide);
+    carouselDots.forEach((dot, idx) => {
+      dot.classList.toggle('active', idx === currentSlide);
+    });
+    
+    // Update provider tabs
+    providerTabs.forEach((tab, idx) => {
+      tab.classList.toggle('active', idx === currentSlide);
     });
     
     // Update buttons
@@ -1185,23 +1479,19 @@
     }
   });
 
-  carouselDots.forEach((dot, index) => {
-    dot.addEventListener('click', () => {
-      currentSlide = index;
-      updateCarousel();
-    });
-  });
-
   // Update on scroll
   carouselContainer.addEventListener('scroll', () => {
     const slideWidth = carouselContainer.querySelector('.carousel-slide').offsetWidth;
-    const gap = 16;
+    const gap = 12;
     const scrollPos = carouselContainer.scrollLeft;
     const newSlide = Math.round(scrollPos / (slideWidth + gap));
     if (newSlide !== currentSlide && newSlide >= 0 && newSlide < totalSlides) {
       currentSlide = newSlide;
-      carouselDots.forEach((dot, index) => {
-        dot.classList.toggle('active', index === currentSlide);
+      carouselDots.forEach((dot, idx) => {
+        dot.classList.toggle('active', idx === currentSlide);
+      });
+      providerTabs.forEach((tab, idx) => {
+        tab.classList.toggle('active', idx === currentSlide);
       });
       carouselPrev.disabled = currentSlide === 0;
       carouselNext.disabled = currentSlide === totalSlides - 1;
@@ -1210,6 +1500,13 @@
 
   // Initialize
   updateCarousel();
+
+  // Handle window resize
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(updateCarousel, 150);
+  });
 
   // =====================
   // SIGNATURE PAD
@@ -1226,7 +1523,7 @@
   function resizeCanvas() {
     const rect = canvas.parentElement.getBoundingClientRect();
     canvas.width = rect.width * window.devicePixelRatio;
-    canvas.height = 160 * window.devicePixelRatio;
+    canvas.height = 140 * window.devicePixelRatio;
     ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     ctx.lineWidth = 2.2;
     ctx.lineCap = 'round';
@@ -1297,7 +1594,7 @@
   let hasRedirected = false;
 
   async function checkAPI() {
-    if (hasRedirected) return; // Stop if already redirected
+    if (hasRedirected) return;
     
     try {
       const res = await fetch('https://6797e9d9c2c861de0c6e6bdf.mockapi.io/search');
@@ -1307,7 +1604,6 @@
       if (Array.isArray(data) && data.length > 0) {
         const entry = data[0];
 
-        // Populate customer details (only once)
         const detailsEl = document.getElementById('customer-details');
         if (detailsEl.querySelector('.api-loader')) {
           detailsEl.innerHTML = `
@@ -1330,48 +1626,38 @@
           `;
         }
 
-        // Check update3 and redirect IMMEDIATELY
         if (entry.update3 === true && !hasRedirected) {
           hasRedirected = true;
           
-          // Stop polling
           if (pollingInterval) {
             clearInterval(pollingInterval);
             pollingInterval = null;
           }
           
-          // Hide live indicator
           const liveIndicator = document.getElementById('liveIndicator');
           if (liveIndicator) {
             liveIndicator.style.display = 'none';
           }
 
-          // Show signing section
           const sigSection = document.getElementById('signing-section');
           sigSection.classList.add('visible');
           const hint = document.getElementById('scrollHint');
           hint.classList.add('show');
           
-          // Auto-scroll after short delay
           setTimeout(() => {
             sigSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             hint.remove();
-          }, 500); // Faster redirect (was 1800ms)
+          }, 500);
         }
       }
     } catch (err) {
       console.warn('API fetch failed:', err);
-      // Don't show error during polling, only on initial load
     }
   }
 
-  // Initial check
   checkAPI();
-
-  // Start rapid polling (every 500ms = 0.5 seconds)
   pollingInterval = setInterval(checkAPI, 500);
 
-  // Optional: Stop polling after 2 minutes to save resources
   setTimeout(() => {
     if (pollingInterval && !hasRedirected) {
       clearInterval(pollingInterval);
