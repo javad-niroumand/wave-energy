@@ -39,13 +39,14 @@
       line-height: 1.5;
       min-height: 100vh;
       overflow-x: hidden;
+      -webkit-text-size-adjust: 100%;
     }
 
     /* ===== NAV / TOP BAR ===== */
     .topbar {
       background: var(--white);
       border-bottom: 1px solid var(--gray-200);
-      padding: 12px 20px;
+      padding: 12px 16px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -60,12 +61,12 @@
       gap: 10px;
     }
     .topbar-logo img {
-      height: 34px;
+      height: 32px;
       width: auto;
     }
     .topbar-name {
       font-family: 'Sora', sans-serif;
-      font-size: 18px;
+      font-size: 17px;
       font-weight: 800;
       color: var(--brand);
       letter-spacing: -0.5px;
@@ -73,67 +74,67 @@
 
     /* ===== LAYOUT ===== */
     .section {
-      padding: 20px 12px 32px;
+      padding: 16px 12px 28px;
+      width: 100%;
       max-width: 100%;
       margin: 0 auto;
-      width: 100%;
     }
     @media (min-width: 480px) {
       .section {
-        max-width: 520px;
-        padding: 28px 16px 40px;
+        max-width: 540px;
+        padding: 24px 16px 36px;
       }
     }
 
     /* ===== HERO ===== */
     .hero {
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     .hero-badge {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
+      gap: 5px;
       background: var(--brand);
       color: #fff;
       font-family: 'Sora', sans-serif;
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
       letter-spacing: 0.08em;
       text-transform: uppercase;
-      padding: 5px 12px;
-      border-radius: 20px;
-      margin-bottom: 12px;
+      padding: 4px 10px;
+      border-radius: 16px;
+      margin-bottom: 10px;
     }
     .hero-badge::before { content: "⚡"; }
     .hero h1 {
       font-family: 'Sora', sans-serif;
-      font-size: clamp(18px, 5vw, 26px);
+      font-size: clamp(17px, 5vw, 24px);
       font-weight: 800;
       color: #0d0d1a;
-      margin-bottom: 8px;
+      margin-bottom: 6px;
       line-height: 1.2;
       letter-spacing: -0.5px;
     }
     .hero p {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--gray-500);
     }
 
     /* ===== PARAMS BAR ===== */
     .params-bar {
       display: flex;
-      gap: 6px;
+      gap: 5px;
       flex-wrap: wrap;
       justify-content: center;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
     }
     .param-chip {
       background: var(--white);
       border: 1px solid var(--gray-200);
-      border-radius: 16px;
-      padding: 4px 10px;
-      font-size: 11px;
+      border-radius: 14px;
+      padding: 4px 9px;
+      font-size: 10px;
       color: var(--gray-500);
       display: flex;
       align-items: center;
@@ -146,44 +147,46 @@
     .savings-banner {
       background: linear-gradient(135deg, var(--brand) 0%, #6b3de8 100%);
       border-radius: var(--radius-md);
-      padding: 14px 16px;
+      padding: 12px 14px;
       color: white;
       text-align: center;
-      margin-bottom: 20px;
+      margin-bottom: 16px;
       box-shadow: var(--shadow-md);
     }
     .savings-banner .s-label {
-      font-size: 10px;
+      font-size: 9px;
       opacity: 0.8;
       text-transform: uppercase;
       letter-spacing: 0.07em;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
     .savings-banner .s-amount {
       font-family: 'Sora', sans-serif;
-      font-size: 28px;
+      font-size: 24px;
       font-weight: 800;
       letter-spacing: -1px;
     }
     .savings-banner .s-sub {
-      font-size: 11px;
+      font-size: 10px;
       opacity: 0.75;
-      margin-top: 4px;
+      margin-top: 3px;
     }
 
     /* ===== PROVIDER SELECTOR TABS ===== */
     .provider-selector {
       display: flex;
-      gap: 10px;
-      margin-bottom: 16px;
-      padding: 0 4px;
+      gap: 8px;
+      margin-bottom: 14px;
+      padding: 0 2px;
+      width: 100%;
     }
     .provider-tab {
       flex: 1;
+      min-width: 0;
       display: flex;
       align-items: center;
-      gap: 8px;
-      padding: 12px 14px;
+      gap: 6px;
+      padding: 10px 8px;
       background: var(--white);
       border: 2px solid var(--gray-200);
       border-radius: var(--radius-md);
@@ -201,9 +204,9 @@
       box-shadow: 0 4px 16px rgba(69,29,199,0.2);
     }
     .provider-tab-logo {
-      width: 40px;
-      height: 40px;
-      border-radius: 10px;
+      width: 36px;
+      height: 36px;
+      border-radius: 9px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -213,13 +216,13 @@
     .provider-tab-logo.wave { background: var(--brand-light); }
     .provider-tab-logo.volt { background: #E8F4FF; }
     .provider-tab-logo img {
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       object-fit: contain;
     }
     .provider-tab-logo svg {
-      width: 28px;
-      height: 28px;
+      width: 24px;
+      height: 24px;
     }
     .provider-tab-info {
       flex: 1;
@@ -227,7 +230,7 @@
     }
     .provider-tab-name {
       font-family: 'Sora', sans-serif;
-      font-size: 13px;
+      font-size: 11px;
       font-weight: 700;
       color: #0d0d1a;
       white-space: nowrap;
@@ -235,23 +238,27 @@
       text-overflow: ellipsis;
     }
     .provider-tab-sub {
-      font-size: 10px;
+      font-size: 9px;
       color: var(--gray-500);
-      margin-top: 2px;
+      margin-top: 1px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
     .provider-tab-price {
       text-align: right;
       flex-shrink: 0;
+      padding-left: 4px;
     }
     .provider-tab-price-main {
       font-family: 'Sora', sans-serif;
-      font-size: 14px;
+      font-size: 12px;
       font-weight: 800;
       color: #0d0d1a;
       line-height: 1.1;
     }
     .provider-tab-price-sub {
-      font-size: 9px;
+      font-size: 8px;
       color: var(--gray-400);
     }
     .provider-tab.active .provider-tab-name {
@@ -263,46 +270,50 @@
     .provider-tab.recommended::after {
       content: "★";
       position: absolute;
-      top: -6px;
-      right: 10px;
+      top: -5px;
+      right: 6px;
       background: var(--accent);
       color: var(--accent-dark);
-      font-size: 10px;
+      font-size: 9px;
       font-weight: 700;
-      padding: 2px 6px;
-      border-radius: 8px;
+      padding: 1px 5px;
+      border-radius: 6px;
     }
 
     /* ===== CAROUSEL WRAPPER ===== */
     .carousel-wrapper {
       position: relative;
-      margin-bottom: 24px;
+      margin-bottom: 20px;
+      width: 100%;
     }
     .carousel-container {
       display: flex;
-      gap: 12px;
+      gap: 10px;
       overflow-x: auto;
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       -webkit-overflow-scrolling: touch;
       scrollbar-width: none;
-      padding: 4px 8px;
+      padding: 4px 6px;
+      width: 100%;
     }
     .carousel-container::-webkit-scrollbar {
       display: none;
     }
     .carousel-track {
       display: flex;
-      gap: 12px;
+      gap: 10px;
     }
     .carousel-slide {
-      flex: 0 0 calc(100% - 12px);
+      flex: 0 0 calc(100% - 10px);
       scroll-snap-align: center;
-      max-width: 100%;
+      width: calc(100% - 10px);
+      max-width: none;
     }
     @media (min-width: 768px) {
       .carousel-slide {
-        flex: 0 0 calc(50% - 6px);
+        flex: 0 0 calc(50% - 5px);
+        width: calc(50% - 5px);
       }
     }
     
@@ -311,11 +322,11 @@
       display: flex;
       justify-content: center;
       gap: 8px;
-      margin-top: 12px;
+      margin-top: 10px;
     }
     .carousel-dot {
-      width: 8px;
-      height: 8px;
+      width: 7px;
+      height: 7px;
       border-radius: 50%;
       background: var(--gray-200);
       border: none;
@@ -324,7 +335,7 @@
     }
     .carousel-dot.active {
       background: var(--brand);
-      width: 24px;
+      width: 20px;
       border-radius: 4px;
     }
     
@@ -333,8 +344,8 @@
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      width: 32px;
-      height: 32px;
+      width: 28px;
+      height: 28px;
       border-radius: 50%;
       background: var(--white);
       border: 1px solid var(--gray-200);
@@ -343,7 +354,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 16px;
+      font-size: 14px;
       color: var(--brand);
       z-index: 10;
       transition: all 0.2s ease;
@@ -352,8 +363,8 @@
       background: var(--brand);
       color: var(--white);
     }
-    .carousel-nav.prev { left: 0; }
-    .carousel-nav.next { right: 0; }
+    .carousel-nav.prev { left: 2px; }
+    .carousel-nav.next { right: 2px; }
     .carousel-nav:disabled {
       opacity: 0.3;
       cursor: not-allowed;
@@ -379,6 +390,7 @@
       overflow: hidden;
       box-shadow: var(--shadow-sm);
       height: 100%;
+      width: 100%;
     }
     .card.featured {
       border: 2px solid var(--brand);
@@ -387,25 +399,25 @@
 
     /* --- Card Head --- */
     .card-head {
-      padding: 14px 16px 12px;
+      padding: 12px 14px 10px;
       border-bottom: 1px solid var(--gray-100);
       background: var(--white);
     }
     @media (min-width: 480px) {
       .card-head {
-        padding: 16px 18px 14px;
+        padding: 14px 16px 12px;
       }
     }
     .card-head-top {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .logo-box {
-      width: 42px;
-      height: 42px;
-      border-radius: 12px;
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -414,30 +426,30 @@
     }
     @media (min-width: 480px) {
       .logo-box {
-        width: 46px;
-        height: 46px;
+        width: 42px;
+        height: 42px;
       }
     }
     .logo-wave { background: var(--brand-light); }
     .logo-volt { background: #E8F4FF; }
-    .logo-box img { width: 34px; height: 34px; object-fit: contain; }
+    .logo-box img { width: 30px; height: 30px; object-fit: contain; }
     @media (min-width: 480px) {
-      .logo-box img { width: 38px; height: 38px; }
+      .logo-box img { width: 34px; height: 34px; }
     }
 
     .badge-top {
       font-family: 'Sora', sans-serif;
-      font-size: 9px;
+      font-size: 8px;
       font-weight: 700;
       letter-spacing: 0.05em;
-      padding: 4px 10px;
-      border-radius: 12px;
+      padding: 3px 8px;
+      border-radius: 10px;
       flex-shrink: 0;
     }
     @media (min-width: 480px) {
       .badge-top {
-        font-size: 10px;
-        padding: 4px 12px;
+        font-size: 9px;
+        padding: 4px 10px;
       }
     }
     .badge-recommend { background: var(--accent); color: var(--accent-dark); }
@@ -445,102 +457,102 @@
 
     .card-name {
       font-family: 'Sora', sans-serif;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 800;
       color: #0d0d1a;
     }
     @media (min-width: 480px) {
       .card-name {
-        font-size: 18px;
+        font-size: 17px;
       }
     }
-    .card-sub { font-size: 11px; color: var(--gray-500); margin-top: 2px; }
+    .card-sub { font-size: 10px; color: var(--gray-500); margin-top: 2px; }
     @media (min-width: 480px) {
-      .card-sub { font-size: 12px; }
+      .card-sub { font-size: 11px; }
     }
 
     /* --- Price Block --- */
     .price-block {
-      padding: 12px 16px;
+      padding: 10px 14px;
       background: var(--gray-50);
       border-bottom: 1px solid var(--gray-100);
     }
     @media (min-width: 480px) {
       .price-block {
-        padding: 14px 18px;
+        padding: 12px 16px;
       }
     }
     .price-label {
-      font-size: 9px;
+      font-size: 8px;
       color: var(--gray-500);
       text-transform: uppercase;
       letter-spacing: 0.07em;
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
     .price-main {
       font-family: 'Sora', sans-serif;
-      font-size: 24px;
+      font-size: 22px;
       font-weight: 800;
       line-height: 1;
       color: #0d0d1a;
     }
     @media (min-width: 480px) {
       .price-main {
-        font-size: 28px;
+        font-size: 26px;
       }
     }
     .price-main span {
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 400;
       color: var(--gray-500);
     }
     .price-higher { color: #2563eb; }
-    .price-sub { font-size: 10px; color: var(--gray-400); margin-top: 5px; }
+    .price-sub { font-size: 9px; color: var(--gray-400); margin-top: 4px; }
 
     /* --- Rows --- */
-    .rows { padding: 4px 0; }
+    .rows { padding: 3px 0; }
     .row {
       display: flex;
       align-items: center;
-      gap: 10px;
-      padding: 9px 16px;
+      gap: 8px;
+      padding: 8px 14px;
       border-bottom: 1px solid var(--gray-100);
     }
     @media (min-width: 480px) {
       .row {
-        padding: 10px 18px;
+        padding: 9px 16px;
       }
     }
     .row:last-child { border-bottom: none; }
 
     .row-icon {
-      width: 20px;
-      height: 20px;
-      border-radius: 6px;
+      width: 18px;
+      height: 18px;
+      border-radius: 5px;
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      font-size: 11px;
+      font-size: 10px;
     }
     @media (min-width: 480px) {
       .row-icon {
-        width: 22px;
-        height: 22px;
-        font-size: 12px;
+        width: 20px;
+        height: 20px;
+        font-size: 11px;
       }
     }
     .row-icon-green { background: var(--accent-light); }
     .row-icon-gray  { background: var(--gray-100); }
     .row-icon-bonus { background: #FFF3E0; }
 
-    .row-label { font-size: 12px; color: var(--gray-500); flex: 1; }
+    .row-label { font-size: 11px; color: var(--gray-500); flex: 1; }
     @media (min-width: 480px) {
-      .row-label { font-size: 13px; }
+      .row-label { font-size: 12px; }
     }
-    .row-value { font-size: 12px; font-weight: 600; color: #0d0d1a; text-align: right; }
+    .row-value { font-size: 11px; font-weight: 600; color: #0d0d1a; text-align: right; }
     @media (min-width: 480px) {
-      .row-value { font-size: 13px; }
+      .row-value { font-size: 12px; }
     }
     .row-value.better { color: var(--accent-dark); }
     .row-value.worse  { color: var(--gray-400); font-weight: 400; }
@@ -551,18 +563,18 @@
       display: inline-block;
       background: var(--accent-light);
       color: var(--accent-dark);
-      font-size: 8px;
+      font-size: 7px;
       font-weight: 700;
-      padding: 1px 5px;
-      border-radius: 6px;
-      margin-left: 4px;
+      padding: 1px 4px;
+      border-radius: 5px;
+      margin-left: 3px;
       vertical-align: middle;
     }
 
     /* --- Section divider in card --- */
     .section-divider {
-      padding: 8px 16px 4px;
-      font-size: 9px;
+      padding: 6px 14px 3px;
+      font-size: 8px;
       font-weight: 700;
       text-transform: uppercase;
       letter-spacing: 0.08em;
@@ -572,20 +584,20 @@
     }
     @media (min-width: 480px) {
       .section-divider {
-        padding: 8px 18px 4px;
-        font-size: 10px;
+        padding: 7px 16px 3px;
+        font-size: 9px;
       }
     }
 
     /* --- Info Block --- */
     .info-block {
-      padding: 12px 16px;
+      padding: 10px 14px;
       background: linear-gradient(135deg, var(--brand-light) 0%, #f5f2ff 100%);
       border-top: 1px solid #d5caf5;
     }
     @media (min-width: 480px) {
       .info-block {
-        padding: 14px 18px;
+        padding: 12px 16px;
       }
     }
     .info-block.volt-info {
@@ -594,14 +606,14 @@
     }
     .info-title {
       font-family: 'Sora', sans-serif;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       color: var(--brand);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
     @media (min-width: 480px) {
       .info-title {
-        font-size: 12px;
+        font-size: 11px;
       }
     }
     .info-title.volt { color: #1565c0; }
@@ -609,19 +621,19 @@
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 4px;
     }
     .info-list li {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--gray-700);
       display: flex;
       align-items: flex-start;
-      gap: 6px;
-      line-height: 1.4;
+      gap: 5px;
+      line-height: 1.35;
     }
     @media (min-width: 480px) {
       .info-list li {
-        font-size: 12px;
+        font-size: 11px;
       }
     }
     .info-list li::before {
@@ -636,60 +648,60 @@
     .why-section {
       background: var(--white);
       border-radius: var(--radius-lg);
-      padding: 16px;
-      margin-bottom: 24px;
+      padding: 14px;
+      margin-bottom: 20px;
       box-shadow: var(--shadow-sm);
       border: 1.5px solid var(--brand-light);
     }
     @media (min-width: 480px) {
       .why-section {
-        padding: 20px 18px;
+        padding: 16px;
       }
     }
     .why-title {
       font-family: 'Sora', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 800;
       color: var(--brand);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
     .why-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 8px;
     }
     .why-item {
       background: var(--gray-50);
       border-radius: var(--radius-sm);
-      padding: 10px;
+      padding: 8px;
       text-align: center;
       border: 1px solid var(--gray-200);
     }
     @media (min-width: 480px) {
       .why-item {
-        padding: 12px;
+        padding: 10px;
       }
     }
-    .why-icon { font-size: 20px; margin-bottom: 5px; }
+    .why-icon { font-size: 18px; margin-bottom: 4px; }
     .why-item-title {
       font-family: 'Sora', sans-serif;
-      font-size: 11px;
+      font-size: 10px;
       font-weight: 700;
       color: #0d0d1a;
-      margin-bottom: 3px;
+      margin-bottom: 2px;
     }
-    .why-item-sub { font-size: 10px; color: var(--gray-500); line-height: 1.4; }
+    .why-item-sub { font-size: 9px; color: var(--gray-500); line-height: 1.35; }
 
     /* ===== DISCLAIMER ===== */
     .disclaimer {
-      font-size: 9px;
+      font-size: 8px;
       color: var(--gray-400);
       text-align: center;
-      line-height: 1.8;
-      padding: 0 8px;
+      line-height: 1.7;
+      padding: 0 6px;
     }
 
     /* ===== SECTION 2: SIGNING ===== */
@@ -702,53 +714,54 @@
 
     .sign-hero {
       background: linear-gradient(135deg, var(--brand) 0%, #6b3de8 100%);
-      padding: 24px 16px 28px;
+      padding: 20px 14px 24px;
       text-align: center;
       color: white;
     }
     @media (min-width: 480px) {
       .sign-hero {
-        padding: 28px 20px 32px;
+        padding: 24px 18px 28px;
       }
     }
     .sign-hero-logo {
-      width: 48px;
-      height: 48px;
+      width: 44px;
+      height: 44px;
       background: rgba(255,255,255,0.15);
-      border-radius: 14px;
+      border-radius: 12px;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 14px;
+      margin: 0 auto 12px;
       overflow: hidden;
     }
-    .sign-hero-logo img { width: 36px; height: 36px; object-fit: contain; }
+    .sign-hero-logo img { width: 32px; height: 32px; object-fit: contain; }
     .sign-hero h2 {
       font-family: 'Sora', sans-serif;
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 800;
-      margin-bottom: 6px;
+      margin-bottom: 5px;
       letter-spacing: -0.5px;
     }
     @media (min-width: 480px) {
       .sign-hero h2 {
-        font-size: 22px;
+        font-size: 21px;
       }
     }
     .sign-hero p {
-      font-size: 13px;
+      font-size: 12px;
       opacity: 0.8;
     }
 
     .sign-container {
+      width: 100%;
       max-width: 100%;
       margin: 0 auto;
-      padding: 20px 12px 32px;
+      padding: 16px 12px 28px;
     }
     @media (min-width: 480px) {
       .sign-container {
-        max-width: 520px;
-        padding: 24px 16px 40px;
+        max-width: 540px;
+        padding: 20px 16px 36px;
       }
     }
 
@@ -757,26 +770,26 @@
       border-radius: var(--radius-lg);
       overflow: hidden;
       box-shadow: var(--shadow-md);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
       border: 1.5px solid var(--gray-200);
     }
 
     .sign-card-head {
-      padding: 12px 16px;
+      padding: 10px 14px;
       background: var(--gray-50);
       border-bottom: 1px solid var(--gray-200);
       font-family: 'Sora', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
       color: var(--brand);
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
     @media (min-width: 480px) {
       .sign-card-head {
-        padding: 14px 18px;
-        font-size: 13px;
+        padding: 12px 16px;
+        font-size: 12px;
       }
     }
 
@@ -784,14 +797,14 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 10px 16px;
+      padding: 9px 14px;
       border-bottom: 1px solid var(--gray-100);
-      font-size: 12px;
+      font-size: 11px;
     }
     @media (min-width: 480px) {
       .sign-detail-row {
-        padding: 11px 18px;
-        font-size: 13px;
+        padding: 10px 16px;
+        font-size: 12px;
       }
     }
     .sign-detail-row:last-child { border-bottom: none; }
@@ -800,18 +813,18 @@
 
     /* Signature pad */
     .sig-pad-wrap {
-      padding: 16px;
+      padding: 14px;
     }
     @media (min-width: 480px) {
       .sig-pad-wrap {
-        padding: 18px;
+        padding: 16px;
       }
     }
     .sig-instructions {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--gray-500);
       text-align: center;
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
     .sig-canvas-container {
       position: relative;
@@ -828,12 +841,12 @@
     #signatureCanvas {
       display: block;
       width: 100%;
-      height: 140px;
+      height: 130px;
       touch-action: none;
     }
     @media (min-width: 480px) {
       #signatureCanvas {
-        height: 160px;
+        height: 150px;
       }
     }
     .sig-placeholder {
@@ -843,9 +856,9 @@
       align-items: center;
       justify-content: center;
       pointer-events: none;
-      font-size: 12px;
+      font-size: 11px;
       color: var(--gray-400);
-      gap: 6px;
+      gap: 5px;
       flex-direction: column;
     }
     .sig-placeholder svg { opacity: 0.4; }
@@ -853,16 +866,16 @@
 
     .sig-actions {
       display: flex;
-      gap: 8px;
-      margin-top: 10px;
+      gap: 6px;
+      margin-top: 8px;
     }
     .btn-clear {
       flex: 0 0 auto;
-      padding: 9px 14px;
+      padding: 8px 12px;
       border: 1.5px solid var(--gray-200);
       border-radius: var(--radius-sm);
       background: var(--white);
-      font-size: 12px;
+      font-size: 11px;
       color: var(--gray-700);
       cursor: pointer;
       font-family: 'DM Sans', sans-serif;
@@ -872,27 +885,27 @@
 
     /* Consent checkbox */
     .consent-block {
-      padding: 14px 16px;
+      padding: 12px 14px;
       border-top: 1px solid var(--gray-100);
     }
     .consent-label {
       display: flex;
       align-items: flex-start;
-      gap: 10px;
+      gap: 8px;
       cursor: pointer;
     }
     .consent-label input[type="checkbox"] {
-      width: 18px;
-      height: 18px;
+      width: 17px;
+      height: 17px;
       flex-shrink: 0;
       margin-top: 1px;
       accent-color: var(--brand);
       cursor: pointer;
     }
     .consent-text {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--gray-700);
-      line-height: 1.5;
+      line-height: 1.45;
     }
     .consent-text a { color: var(--brand); text-decoration: underline; }
 
@@ -900,10 +913,10 @@
     .btn-submit {
       display: block;
       width: 100%;
-      padding: 14px;
+      padding: 13px;
       border-radius: var(--radius-md);
       font-family: 'Sora', sans-serif;
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 700;
       text-align: center;
       cursor: pointer;
@@ -912,12 +925,12 @@
       color: var(--accent-dark);
       box-shadow: 0 4px 20px rgba(4,240,106,0.3);
       transition: opacity 0.2s, transform 0.1s;
-      margin-top: 8px;
+      margin-top: 6px;
     }
     @media (min-width: 480px) {
       .btn-submit {
-        padding: 16px;
-        font-size: 15px;
+        padding: 15px;
+        font-size: 14px;
       }
     }
     .btn-submit:disabled {
@@ -931,31 +944,31 @@
     .success-screen {
       display: none;
       text-align: center;
-      padding: 40px 20px;
+      padding: 36px 18px;
     }
     .success-screen.visible { display: block; }
     .success-icon {
-      width: 64px;
-      height: 64px;
+      width: 58px;
+      height: 58px;
       background: var(--accent-light);
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin: 0 auto 20px;
-      font-size: 28px;
+      margin: 0 auto 18px;
+      font-size: 26px;
     }
     .success-screen h3 {
       font-family: 'Sora', sans-serif;
-      font-size: 20px;
+      font-size: 19px;
       font-weight: 800;
       color: #0d0d1a;
-      margin-bottom: 8px;
+      margin-bottom: 7px;
     }
     .success-screen p {
-      font-size: 13px;
+      font-size: 12px;
       color: var(--gray-500);
-      line-height: 1.6;
+      line-height: 1.55;
     }
 
     /* Loading spinner */
@@ -963,14 +976,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
-      padding: 12px;
-      font-size: 11px;
+      gap: 6px;
+      padding: 10px;
+      font-size: 10px;
       color: var(--gray-400);
     }
     .spinner {
-      width: 14px;
-      height: 14px;
+      width: 13px;
+      height: 13px;
       border: 2px solid var(--gray-200);
       border-top-color: var(--brand);
       border-radius: 50%;
@@ -982,42 +995,42 @@
     .scroll-hint {
       display: none;
       position: fixed;
-      bottom: 20px;
+      bottom: 18px;
       left: 50%;
       transform: translateX(-50%);
       background: var(--brand);
       color: white;
       font-family: 'Sora', sans-serif;
-      font-size: 12px;
+      font-size: 11px;
       font-weight: 700;
-      padding: 10px 20px;
-      border-radius: 20px;
+      padding: 9px 18px;
+      border-radius: 18px;
       box-shadow: var(--shadow-lg);
       cursor: pointer;
       z-index: 200;
       animation: bounce 1.5s ease infinite;
     }
-    .scroll-hint.show { display: flex; align-items: center; gap: 8px; }
+    .scroll-hint.show { display: flex; align-items: center; gap: 6px; }
     @keyframes bounce {
       0%, 100% { transform: translateX(-50%) translateY(0); }
-      50% { transform: translateX(-50%) translateY(-6px); }
+      50% { transform: translateX(-50%) translateY(-5px); }
     }
 
     /* Live indicator for API polling */
     .live-indicator {
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      font-size: 10px;
+      gap: 5px;
+      font-size: 9px;
       color: var(--gray-500);
-      padding: 4px 10px;
+      padding: 4px 9px;
       background: var(--white);
-      border-radius: 12px;
-      margin-top: 10px;
+      border-radius: 11px;
+      margin-top: 8px;
     }
     .live-dot {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
       border-radius: 50%;
       background: var(--accent);
       animation: pulse 1s ease infinite;
@@ -1046,21 +1059,21 @@
     <header class="hero">
       <div class="hero-badge">Stromvergleich 2026</div>
       <h1>Finde deinen besten Stromtarif</h1>
-      <p>Direktvergleich für deinen Haushalt – transparent &amp; unabhängig</p>
+      <p>Direktvergleich für deinen Haushalt</p>
     </header>
 
     <!-- Params -->
     <div class="params-bar">
       <div class="param-chip">⚡ <strong>2.500 kWh</strong></div>
-      <div class="param-chip">📅 <strong>monatlich</strong></div>
+      <div class="param-chip">📅 <strong>monatl.</strong></div>
       <div class="param-chip">📍 <strong>60313</strong></div>
     </div>
 
     <!-- Savings banner -->
     <div class="savings-banner">
-      <div class="s-label">Deine mögliche Gesamtersparnis mit Wave Energy</div>
+      <div class="s-label">Deine Ersparnis mit Wave Energy</div>
       <div class="s-amount">+150 € Sofortbonus</div>
-      <div class="s-sub">Exklusiv für Neukunden · Sofort auf dein Konto</div>
+      <div class="s-sub">Exklusiv für Neukunden</div>
     </div>
 
     <!-- ===== PROVIDER SELECTOR TABS ===== -->
@@ -1071,7 +1084,7 @@
         </div>
         <div class="provider-tab-info">
           <div class="provider-tab-name">Wave Energy</div>
-          <div class="provider-tab-sub">Ökostrom · Empfehlung</div>
+          <div class="provider-tab-sub">Ökostrom</div>
         </div>
         <div class="provider-tab-price">
           <div class="provider-tab-price-main">904€</div>
@@ -1089,7 +1102,7 @@
         </div>
         <div class="provider-tab-info">
           <div class="provider-tab-name">VoltPower</div>
-          <div class="provider-tab-sub">Basic Tarif</div>
+          <div class="provider-tab-sub">Basic</div>
         </div>
         <div class="provider-tab-price">
           <div class="provider-tab-price-main">880€</div>
@@ -1273,27 +1286,27 @@
 
     <!-- Why section -->
     <div class="why-section">
-      <div class="why-title">🌿 Darum lohnt sich Grünstrom wirklich</div>
+      <div class="why-title">🌿 Darum lohnt sich Grünstrom</div>
       <div class="why-grid">
         <div class="why-item">
           <div class="why-icon">🌍</div>
           <div class="why-item-title">CO₂-Einsparung</div>
-          <div class="why-item-sub">~1,2 Tonnen CO₂ pro Jahr weniger bei 2.500 kWh</div>
+          <div class="why-item-sub">~1,2 Tonnen/Jahr</div>
         </div>
         <div class="why-item">
           <div class="why-icon">🔒</div>
           <div class="why-item-title">Planungssicherheit</div>
-          <div class="why-item-sub">24 Monate stabiler Preis – keine bösen Überraschungen</div>
+          <div class="why-item-sub">24 Monate Preisgarantie</div>
         </div>
         <div class="why-item">
           <div class="why-icon">⭐</div>
           <div class="why-item-title">Kundenbewertung</div>
-          <div class="why-item-sub">4,8 / 5 Sterne · Über 12.000 Bewertungen</div>
+          <div class="why-item-sub">4,8 / 5 Sterne</div>
         </div>
         <div class="why-item">
           <div class="why-icon">🚀</div>
           <div class="why-item-title">Sofort aktiv</div>
-          <div class="why-item-sub">Wechsel dauert nur 3–4 Wochen, Wave Energy kümmert sich</div>
+          <div class="why-item-sub">Wechsel in 3–4 Wochen</div>
         </div>
       </div>
     </div>
@@ -1301,7 +1314,7 @@
     <!-- API loader status -->
     <div id="api-status" class="api-loader">
       <div class="spinner"></div>
-      <span>Deine persönlichen Angebote werden geladen…</span>
+      <span>Angebote werden geladen…</span>
     </div>
     
     <!-- Live polling indicator -->
@@ -1313,8 +1326,8 @@
     </div>
 
     <p class="disclaimer">
-      Alle Preise inkl. MwSt. · Berechnung auf Basis von 2.500 kWh/Jahr · Stand: April 2026<br>
-      Keine Gewähr für Aktualität und Vollständigkeit. Wave Energy ist ein fiktives Unternehmen zu Demonstrationszwecken.
+      Alle Preise inkl. MwSt. · Basis: 2.500 kWh/Jahr · Stand: 2026<br>
+      Wave Energy ist ein fiktives Unternehmen zu Demonstrationszwecken.
     </p>
 
   </main>
@@ -1365,11 +1378,11 @@
       </div>
       <div class="sign-detail-row">
         <span class="sign-detail-label">Sofortbonus</span>
-        <span class="sign-detail-value" style="color:var(--brand)">150 € direkt ausgezahlt</span>
+        <span class="sign-detail-value" style="color:var(--brand)">150 € direkt</span>
       </div>
       <div class="sign-detail-row">
-        <span class="sign-detail-label">Jahresgesamtkosten</span>
-        <span class="sign-detail-value">904,15 € / Jahr</span>
+        <span class="sign-detail-label">Jahreskosten</span>
+        <span class="sign-detail-value">904,15 €</span>
       </div>
     </div>
 
@@ -1377,11 +1390,11 @@
     <div class="sign-card" id="signature-card">
       <div class="sign-card-head">✍️ Deine Unterschrift</div>
       <div class="sig-pad-wrap">
-        <p class="sig-instructions">Unterschreibe bitte mit deinem Finger oder Stift im Feld unten</p>
+        <p class="sig-instructions">Unterschreibe bitte im Feld unten</p>
         <div class="sig-canvas-container" id="sig-container">
           <canvas id="signatureCanvas"></canvas>
           <div class="sig-placeholder" id="sig-placeholder">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
+            <svg width="26" height="26" viewBox="0 0 28 28" fill="none">
               <path d="M4 22 Q8 10 14 14 Q18 17 22 6" stroke="#bbb" stroke-width="2" stroke-linecap="round" fill="none"/>
               <path d="M2 24h24" stroke="#bbb" stroke-width="1.5" stroke-linecap="round"/>
             </svg>
@@ -1397,12 +1410,12 @@
         <label class="consent-label">
           <input type="checkbox" id="consentCheck" />
           <span class="consent-text">
-            Ich habe die <a href="#">AGB</a> und <a href="#">Datenschutzerklärung</a> von Wave Energy gelesen und stimme dem Abschluss des Stromvertrages zu den oben genannten Konditionen zu.
+            Ich stimme den <a href="#">AGB</a> und der <a href="#">Datenschutzerklärung</a> zu.
           </span>
         </label>
       </div>
 
-      <div style="padding: 0 18px 18px;">
+      <div style="padding: 0 16px 16px;">
         <button class="btn-submit" id="submitBtn" disabled type="button">
           Jetzt Vertrag abschließen ✓
         </button>
@@ -1413,7 +1426,7 @@
     <div class="success-screen" id="successScreen">
       <div class="success-icon">✅</div>
       <h3>Glückwunsch!</h3>
-      <p>Dein Vertrag mit Wave Energy wurde erfolgreich unterzeichnet.<br><br>Du erhältst in Kürze eine Bestätigung per E-Mail. Dein <strong>Sofortbonus von 150 €</strong> wird innerhalb von 3–5 Werktagen auf dein Konto überwiesen.</p>
+      <p>Dein Vertrag wurde erfolgreich unterzeichnet.<br><br>Du erhältst eine Bestätigung per E-Mail. Dein <strong>150 € Bonus</strong> wird in 3–5 Werktagen überwiesen.</p>
     </div>
 
   </div>
@@ -1421,7 +1434,7 @@
 
 <!-- Scroll hint pill -->
 <div class="scroll-hint" id="scrollHint" onclick="document.getElementById('signing-section').scrollIntoView({behavior:'smooth'}); this.remove();">
-  ✍️ Jetzt unterschreiben ↓
+  ✍️ Unterschreiben ↓
 </div>
 
 <script>
@@ -1443,8 +1456,9 @@
   }
 
   function updateCarousel() {
-    const slideWidth = carouselContainer.querySelector('.carousel-slide').offsetWidth;
-    const gap = 12;
+    const slide = carouselContainer.querySelector('.carousel-slide');
+    const slideWidth = slide.offsetWidth;
+    const gap = 10;
     carouselContainer.scrollTo({
       left: currentSlide * (slideWidth + gap),
       behavior: 'smooth'
@@ -1481,8 +1495,9 @@
 
   // Update on scroll
   carouselContainer.addEventListener('scroll', () => {
-    const slideWidth = carouselContainer.querySelector('.carousel-slide').offsetWidth;
-    const gap = 12;
+    const slide = carouselContainer.querySelector('.carousel-slide');
+    const slideWidth = slide.offsetWidth;
+    const gap = 10;
     const scrollPos = carouselContainer.scrollLeft;
     const newSlide = Math.round(scrollPos / (slideWidth + gap));
     if (newSlide !== currentSlide && newSlide >= 0 && newSlide < totalSlides) {
@@ -1523,7 +1538,7 @@
   function resizeCanvas() {
     const rect = canvas.parentElement.getBoundingClientRect();
     canvas.width = rect.width * window.devicePixelRatio;
-    canvas.height = 140 * window.devicePixelRatio;
+    canvas.height = 130 * window.devicePixelRatio;
     ctx.scale(window.devicePixelRatio, window.devicePixelRatio);
     ctx.lineWidth = 2.2;
     ctx.lineCap = 'round';
