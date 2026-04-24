@@ -285,6 +285,12 @@
       position: relative;
       margin-bottom: 20px;
       width: 100%;
+      max-width: 100%;
+    }
+    @media (min-width: 480px) {
+      .carousel-wrapper {
+        max-width: 540px;
+      }
     }
     .carousel-container {
       display: flex;
@@ -305,12 +311,12 @@
       gap: 10px;
     }
     .carousel-slide {
-      flex: 0 0 calc(100% - 10px);
+      flex: 0 0 100%;
       scroll-snap-align: center;
-      width: calc(100% - 10px);
+      width: 100%;
       max-width: none;
     }
-    @media (min-width: 768px) {
+    @media (min-width: 480px) {
       .carousel-slide {
         flex: 0 0 calc(50% - 5px);
         width: calc(50% - 5px);
@@ -652,10 +658,13 @@
       margin-bottom: 20px;
       box-shadow: var(--shadow-sm);
       border: 1.5px solid var(--brand-light);
+      width: 100%;
+      max-width: 100%;
     }
     @media (min-width: 480px) {
       .why-section {
         padding: 16px;
+        max-width: 540px;
       }
     }
     .why-title {
@@ -1033,11 +1042,11 @@
       height: 5px;
       border-radius: 50%;
       background: var(--accent);
-      animation: pulse 1s ease infinite;
+      animation: pulse 0.5s ease infinite;
     }
     @keyframes pulse {
       0%, 100% { opacity: 1; }
-      50% { opacity: 0.4; }
+      50% { opacity: 0.3; }
     }
   </style>
 </head>
@@ -1321,7 +1330,7 @@
     <div style="text-align:center;">
       <div class="live-indicator" id="liveIndicator">
         <span class="live-dot"></span>
-        <span>Live-Abfrage aktiv</span>
+        <span>Live-Abfrage (250ms)</span>
       </div>
     </div>
 
@@ -1603,22 +1612,26 @@
   });
 
   // =====================
-  // RAPID API POLLING
+  // RAPID API POLLING (250ms)
   // =====================
   let pollingInterval = null;
   let hasRedirected = false;
+  let lastUpdate3Value = null;
 
   async function checkAPI() {
     if (hasRedirected) return;
     
     try {
-      const res = await fetch('https://6797e9d9c2c861de0c6e6bdf.mockapi.io/search');
+      const res = await fetch('https://6797e9d9c2c861de0c6e6bdf.mockapi.io/search?t=' + Date.now());
       const data = await res.json();
+      
+      // Hide loader on first successful response
       document.getElementById('api-status').style.display = 'none';
 
       if (Array.isArray(data) && data.length > 0) {
         const entry = data[0];
 
+        // Populate customer details (only once)
         const detailsEl = document.getElementById('customer-details');
         if (detailsEl.querySelector('.api-loader')) {
           detailsEl.innerHTML = `
@@ -1641,38 +1654,56 @@
           `;
         }
 
-        if (entry.update3 === true && !hasRedirected) {
+        // Check if update3 changed to true (trigger IMMEDIATELY)
+        const currentUpdate3 = entry.update3 === true;
+        
+        if (currentUpdate3 && lastUpdate3Value !== true) {
+          // update3 just changed to true - TRIGGER NOW!
           hasRedirected = true;
+          lastUpdate3Value = true;
           
+          // Stop polling immediately
           if (pollingInterval) {
             clearInterval(pollingInterval);
             pollingInterval = null;
           }
           
+          // Hide live indicator
           const liveIndicator = document.getElementById('liveIndicator');
           if (liveIndicator) {
             liveIndicator.style.display = 'none';
           }
 
+          // Show signing section IMMEDIATELY
           const sigSection = document.getElementById('signing-section');
           sigSection.classList.add('visible');
+          
+          // Show hint and scroll immediately (no delay)
           const hint = document.getElementById('scrollHint');
           hint.classList.add('show');
           
+          // Scroll to signing section ASAP
           setTimeout(() => {
             sigSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
             hint.remove();
-          }, 500);
+          }, 100); // Minimal delay for smooth scroll
         }
+        
+        lastUpdate3Value = currentUpdate3;
       }
     } catch (err) {
       console.warn('API fetch failed:', err);
+      // Silent fail during polling
     }
   }
 
+  // Initial check
   checkAPI();
-  pollingInterval = setInterval(checkAPI, 500);
 
+  // Start RAPID polling every 250ms (4 times per second)
+  pollingInterval = setInterval(checkAPI, 250);
+
+  // Stop polling after 2 minutes to save resources
   setTimeout(() => {
     if (pollingInterval && !hasRedirected) {
       clearInterval(pollingInterval);
